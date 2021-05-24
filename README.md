@@ -1,5 +1,5 @@
 # Linux addressing
-Translation of logical addresses to physical addresses, using translation lookaside buffer.
+On-demand paging using translation lookaside buffer.
 
 ## Description
 This repository contains a very simple simulation of an on-demand paging system, insipred by [Virtual Memory management](https://en.wikipedia.org/wiki/Virtual_memory) system for Linux.
