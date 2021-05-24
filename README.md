@@ -1,4 +1,4 @@
-# Linux addressing
+# On-demand paging
 On-demand paging using translation lookaside buffer.
 
 ## Description
