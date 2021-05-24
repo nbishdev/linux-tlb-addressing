@@ -39,10 +39,10 @@ make
 
 After you have successfully built the software, execute it using the following command:
 ```bash
-./addr PAGE_TABLE_SIZE
+./vmm PAGE_TABLE_SIZE
 ```
 
 For example, to execute the software using a page table of 512 frames, use the following command:
 ```bash
-./addr 512
+./vmm 512
 ```
