@@ -42,6 +42,10 @@ After you have successfully built the software, execute it using the following c
 ./vmm DIRECTORY PAGE_TABLE_SIZE
 ```
 
+where:
+* DIRECTORY is the path to the directory which contains both the address file and the page file
+* PAGE_TABLE_SIZE is the size of the page table and must be a positive power of 2 and at least equal to 256
+
 For example, to execute the software using a the relative path to the default files directory and a page table of 512 frames, use the following command:
 ```bash
 ./vmm ../files 512
