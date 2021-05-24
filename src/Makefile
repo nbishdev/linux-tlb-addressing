@@ -1,5 +1,5 @@
 all:
 	gcc -c *.c
-	gcc -o myprog *.o -lm
+	gcc -o vmm *.o -lm
 clean:
 	rm -rf *.o
