@@ -15,7 +15,16 @@ Every logical address consists of:
 * an 8-bit offset (within the page)
 
 After an address is read from the file, we search for it in the TLB. We consider the 2 following cases:
-* <b>Page fault</b>. In this case, if the address does not exist in the page table, we open the [content file](/files/BACKING_STORE.bin), we read the corresponding page, we store it both in the TLB and the page table and we extract the signed byte which is stored in this physical address.
-* <b>Page hit</b>. In this case, we just extract the signed byte which is stored in this physical address.
+* <b>Page fault</b>. In this case, if the address does not exist in the page table, we open the binary [content file](/files/BACKING_STORE.bin), we read the corresponding page, we store it both in the TLB and the page table and we extract the signed byte which is stored in this physical address.
+* <b>Page hit</b>. In this case, we just extract the signed byte which is stored in the corresponding physical address.
 
 The TLB is updated using the [Least Recently Used (LRU)](https://en.wikipedia.org/wiki/Cache_replacement_policies#Least_recently_used_(LRU)) policy.
+
+For every logical address we read from the file, we print:
+* The logical address read
+* The physical address to which the logical address is translated
+* The signed byte which is stored in the corresponding physical address
+
+In the end, we print the following statistics:
+* The page fault ratio
+* The TLB hit ratio
