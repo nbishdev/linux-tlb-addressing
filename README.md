@@ -2,7 +2,7 @@
 Translation of logical addresses to physical addresses, using translation lookaside buffer.
 
 ## Description
-This repository contains a very simple simulation of on-demand paging insipred by [Virtual Memory management](https://en.wikipedia.org/wiki/Virtual_memory) for Linux.
+This repository contains a very simple simulation of an on-demand paging system, insipred by [Virtual Memory management](https://en.wikipedia.org/wiki/Virtual_memory) system for Linux.
 
 This simulation aims at performing virtual to physical memory address translation, utilizing a [translation lookaside buffer (TLB)](https://en.wikipedia.org/wiki/Translation_lookaside_buffer).
 
@@ -28,3 +28,21 @@ For every logical address we read from the file, we print:
 In the end, we print the following statistics:
 * The page fault ratio
 * The TLB hit ratio
+
+## Execution
+In order to execute the software, use a Terminal Emulator and navigate to the src directory.
+
+Then, to compile and build the software type the following command:
+```bash
+make
+```
+
+After you have successfully built the software, execute it using the following command:
+```bash
+./addr PAGE_TABLE_SIZE
+```
+
+For example, to execute the software using a page table of 512 frames, use the following command:
+```bash
+./addr 512
+```
