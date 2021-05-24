@@ -8,20 +8,31 @@ int frames;
 int main(int argc, char** argv)
 {
 	int page, address, offset, pf, hit, total, physical, r, i;
-	char buf[17], signed_byte;
+	char *dir, *addrfilepath, *pagefilepath, buf[17], signed_byte;
 	FILE *addrf, *binf;
 	
-	if (argc != 2)
+	if (argc < 3)
 	{
-		printf("Usage: ./myprog NUMBER_OF_FRAMES\n");
-		exit(1);
+		printf("Usage: ./myprog PATH NUMBER_OF_FRAMES\n");
+		exit(EXIT_FAILURE);
 	}
-	frames = atoi(argv[1]);
+	else
+	{
+		dir = argv[1];
+		frames = atoi(argv[2]);
+	}
 	if (frames < 256 || frames % 2 != 0)
 	{
 		printf("Number of frames must be an integer, a power of 2 and at least 256\n");
-		exit(1);
+		exit(EXIT_FAILURE);
 	}
+	
+	addrfilepath = malloc((strlen(dir) + 14 + 1) * sizeof(char));
+	pagefilepath = malloc((strlen(dir) + 18 + 1) * sizeof(char));
+	strcpy(addrfilepath, dir);
+	strcpy(pagefilepath, dir);
+	strcat(addrfilepath, "/addresses.txt");
+	strcat(pagefilepath, "/BACKING_STORE.bin");
 	
 	logic_t logic;
 	physic_t physic;
@@ -36,10 +47,10 @@ int main(int argc, char** argv)
 		
 	read = malloc(256 * sizeof(char));
 	
-	if ((addrf = fopen("../files/addresses.txt", "r")) == NULL || (binf = fopen("../files/BACKING_STORE.bin", "rb")) == NULL)
+	if ((addrf = fopen(addrfilepath, "r")) == NULL || (binf = fopen(pagefilepath, "rb")) == NULL)
 	{
-		printf("Place both addresses.txt and BACKING_STORE.bin into the appropriate directory\n");
-		exit(1);
+		printf("Either addresses.txt or BACKING_STORE.bin were not found into the chosen directory\n");
+		exit(EXIT_FAILURE);
 	}
 	
 	TLB_init(tlb);
@@ -68,7 +79,7 @@ int main(int argc, char** argv)
 			if ((binf = fopen("../files/BACKING_STORE.bin", "rb")) == NULL)
 			{
 				printf("Place BACKING_STORE.bin into the appropriate directory\n");
-				exit(1);
+				exit(EXIT_FAILURE);
 			}
 		}
 		else if (r == 1)
@@ -97,5 +108,5 @@ int main(int argc, char** argv)
 	
 	free(read);
 	
-	exit(0);
+	exit(EXIT_SUCCESS);
 }
