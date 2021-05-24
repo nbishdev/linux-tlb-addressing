@@ -39,10 +39,10 @@ make
 
 After you have successfully built the software, execute it using the following command:
 ```bash
-./vmm PAGE_TABLE_SIZE
+./vmm DIRECTORY PAGE_TABLE_SIZE
 ```
 
-For example, to execute the software using a page table of 512 frames, use the following command:
+For example, to execute the software using a the relative path to the default files directory and a page table of 512 frames, use the following command:
 ```bash
-./vmm 512
+./vmm ../files 512
 ```
