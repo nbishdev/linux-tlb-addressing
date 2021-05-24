@@ -13,7 +13,7 @@ int main(int argc, char** argv)
 	
 	if (argc < 3)
 	{
-		printf("Usage: ./addr DIRECTORY_PATH NUMBER_OF_FRAMES\n");
+		printf("Usage: ./vmm DIRECTORY_PATH NUMBER_OF_FRAMES\n");
 		exit(EXIT_FAILURE);
 	}
 	else
